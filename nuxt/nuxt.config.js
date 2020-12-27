@@ -36,7 +36,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '~/plugins/firebase'
   ],
   /*
   ** Auto import components
@@ -53,19 +54,27 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    'nuxt-fontawesome',
   ],
-  axios: {
-    prefix: '/api',
-    proxy: true
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
+      {
+        set: '@fortawesome/free-regular-svg-icons',
+        icons: ['far']
+      },
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['fab']
+      },
+    ]
   },
-  proxy: {
-    '/api': {
-      target: 'http://localhost:8000/',
-      pathRewrite: {
-        '^/api': '/'
-      }
-    }
+  axios: {
+    baseURL: 'https://laravel-nuxt-5824c.firebaseio.com'
   },
   /*
   ** Build configuration

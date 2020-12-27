@@ -1,11 +1,8 @@
 <template>
   <div>
     <section class="container">
-        <ul v-for="(bucketList, key) in bucketLists">
-            <li>{{bucketList.title}} [{{key}}]</li>
-            <ul v-for="(type, key) in bucketList.types">
-                <li>{{type.name}}</li>
-            </ul>
+        <ul v-for="(type, key) in types">
+            <li>{{type.name}} [{{key}}]</li>
         </ul>
     </section>
   </div>
@@ -19,7 +16,7 @@ export default {
   layout: 'app',
   async asyncData({ params }) {
     return {
-      bucketLists: await getAllDocs("bucket_lists")
+      types: await getAllDocs("types")
     };
   }
 }
